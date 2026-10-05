@@ -128,6 +128,7 @@
             const [currentPet, setCurrentPet] = useState(PETS[0]);
             const [spokenText, setSpokenText] = useState('');
             const [isListening, setIsListening] = useState(false);
+            const [isMuted, setIsMuted] = useState(true);
 
             const recognitionRef = useRef(null);
 
@@ -242,20 +243,17 @@
                                 className="w-full h-full object-cover"
                                 autoPlay
                                 loop
-                                muted
+                                muted={isMuted}
                                 playsInline
                                 src="./my-heygen-video.mp4"
                             />
 
                             <button
                                 type="button"
-                                onClick={() => {
-                                    const video = document.getElementById('intro-video');
-                                    video.muted = !video.muted;
-                                }}
+                                onClick={() => setIsMuted(!isMuted)}
                                 className="absolute top-4 right-4 z-30 bg-white/90 hover:bg-white text-orange-600 px-4 py-2 rounded-full font-bold shadow-lg cursor-pointer"
                             >
-                                🔊 Tap to hear
+                                {isMuted ? '🔊 Tap to hear' : '🔇 Mute'}
                             </button>
                             
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6">
