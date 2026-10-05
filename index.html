@@ -21,10 +21,14 @@
         body {
             font-family: 'Nunito', sans-serif;
             background-color: #ffedd5;
-            /*overflow: hidden;*/
+            overflow: hidden;
             margin: 0;
             padding: 0;
             height: 100vh;
+        }
+        
+        #root, #root > div {
+            height: 100%;
         }
 
         .font-cartoon {
@@ -253,7 +257,7 @@
                                 onClick={() => setIsMuted(!isMuted)}
                                 className="absolute top-4 right-4 z-30 bg-white/90 hover:bg-white text-orange-600 px-4 py-2 rounded-full font-bold shadow-lg cursor-pointer"
                             >
-                                {isMuted ? '🔊 Tap to hear' : '🔇 Mute'}
+                                {isMuted ? '🔊 Tap to hear' : '🔇 Tap to Mute'}
                             </button>
                             
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6">
@@ -359,10 +363,10 @@
             };
 
             return (
-                <div className="min-h-screen w-full flex flex-col relative cafe-pattern">
+                <div className="h-full w-full flex flex-col relative cafe-pattern">
                     <FloatingBeans />
                     {renderHeader()}
-                    <main className=""flex-1 flex flex-col relative overflow-y-auto"">
+                    <main className="flex-1 flex flex-col relative overflow-y-auto" style={{ minHeight: 0 }}>
                         {gameState === 'intro' ? renderIntro() : renderGameplay()}
                         {renderFeedback()}
                     </main>
