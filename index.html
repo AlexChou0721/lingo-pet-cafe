@@ -236,26 +236,34 @@
                         
                         <div className="relative w-full aspect-video bg-amber-100 rounded-3xl overflow-hidden mb-8 border-8 border-amber-200 shadow-inner group">
                             {/* HERE is where it looks for the local video in the same folder */}
+                            
                             <video 
                                 id="intro-video"
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                autoPlay 
-                                loop 
-                                muted 
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
                                 playsInline
                                 src="./my-heygen-video.mp4"
                             />
 
                             <button
-                                onClick={() => {
+                                type="button"
+                                onClick={async () => {
                                     const video = document.getElementById('intro-video');
-                                    video.muted = false;
-                                    video.play();
+                        
+                                    try {
+                                        video.muted = false;
+                                        await video.play();
+                                    } catch (error) {
+                                        console.error('Video playback failed:', error);
+                                    }
                                 }}
-                                className="absolute top-4 right-4 bg-white/90 px-4 py-2 rounded-full font-bold shadow-lg z-20"
+                                className="absolute top-4 right-4 z-30 bg-white/90 hover:bg-white text-orange-600 px-4 py-2 rounded-full font-bold shadow-lg cursor-pointer"
                             >
-                                🔊 Enable Sound
+                                🔊 Tap to hear
                             </button>
+                            
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6">
                                 <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-lg font-cartoon w-max shadow-lg mb-2 flex items-center gap-2">
                                     <VolumeIcon className="w-5 h-5"/> HeyGen Avatar Intro
